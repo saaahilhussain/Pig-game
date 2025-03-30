@@ -17,6 +17,7 @@ dice.classList.add('hidden');
 score0El.textContent = 0;
 score1El.textContent = 0;
 let currentScore = 0;
+let activePlayer = 0; //which will change dynamically
 
 //clicking the roll dice
 btnRoll.addEventListener('click', function () {
@@ -33,8 +34,14 @@ btnRoll.addEventListener('click', function () {
   //4. Till DiceNo !==1, Store the random dice no to currentScore .
   if (diceNo !== 1) {
     currentScore += diceNo;
-    current0El.textContent = currentScore;
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
+    //activePlayer changes dynamically in the else statement below
+
+    // current0El.textContent = currentScore;
   } else {
-    //
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
   }
 });
