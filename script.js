@@ -15,6 +15,7 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
 //initial-values
+let score = [0, 0];
 dice.classList.add('hidden');
 score0El.textContent = 0;
 score1El.textContent = 0;
@@ -48,4 +49,19 @@ btnRoll.addEventListener('click', function () {
     player0El.classList.toggle('player--active');
     player1El.classList.toggle('player--active');
   }
+});
+
+btnHold.addEventListener('click', function () {
+  //score of active player added from current score
+  score[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    score[activePlayer];
+  // console.log(score);
+  //switch player after holding the score
+
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
 });
